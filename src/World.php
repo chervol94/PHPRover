@@ -19,6 +19,9 @@ class World{
     public function returnCoordY(){
         return $this->coordY;
     }
+    public function showObstacles(){
+        print_r($this->obstacles);
+    }
 
     public function returnValues(){
         return [
@@ -47,7 +50,7 @@ class World{
             }
         }
         $this->obstacles = $valueObstacles;
-        var_dump($this->obstacles);
+        //var_dump($this->obstacles);
     }
     //Function used to check if the position provided has any obstacle present/reaches boundaries
     public function checkObstacle(int $posX, int $posY){

@@ -3,6 +3,15 @@
 require 'vendor/autoload.php';
 
 
+/*
+require_once("App/Rover.php");
+require_once("App/InputManagement.php");
+require_once("App/World.php");
+require_once("App/MovementManagement.php");
+*/
+
+
+
 use App\InputManagement;
 use App\Rover;
 
@@ -27,14 +36,19 @@ echo "Please input the sequence of commands for the rover, Forward (F), Left (L)
 $roverSequence = fgets(STDIN);
 $inputChecker->sequenceCheck($roverSequence,$roverObject);
 
-echo "Rover Data:\n";
-var_dump($roverObject->returnValues());
-echo "World Data\n";
-var_dump($worldObject->returnValues());
+//echo "Rover Data:\n";
+//var_dump($roverObject->returnValues());
+//echo "World Data\n";
+//var_dump($worldObject->returnValues());
 
 $roverObject->move($worldObject);
 
 print "Movement completed, Rover shuting down..\n";
+
+print "Do you wish to view the random obstacle placement for this execution? (Y/N) (Recomended use in small worlds)\n";
+$worldObject->showObstacles();
+//$inputChecker->return
+
 
 
 
