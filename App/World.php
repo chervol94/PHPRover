@@ -57,16 +57,16 @@ class World{
         foreach ($obstacleArray as $value){
             $coordinates = explode(' ', trim($value));
             if ($coordinates[0] == $posX  && $coordinates[1] == $posY ){
-                echo "Obstacle found in position ({$posX} {$posY})";
-                //return true
+                echo "[Obstacle found in ({$posX} {$posY})] ";
+                return true;
             }
         }
         //Given that the position of the grid in a 6x6 is from 0 to 5, if any movement reaches or surpases the max, 6, or the minimum, 0, the rover will be out of bounds.
         if($posX >= $maxsizeX || $posY >= $maxsizeY || $posX<0 || $posY<0 ){
-            echo "World boundary reached";
-            //return true;
+            echo "[World boundary reached] ";
+            return true;
         }
-        //return false;
+        return false;
     }
 
 }

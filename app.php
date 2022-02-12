@@ -13,7 +13,7 @@ $worldSize = fgets(STDIN);
 $worldObject = $inputChecker->worldcheck($worldSize);
 
 
-echo "Please input the position of the Rover (X Y)\n";
+echo "Please input the position of the Rover (X Y). Keep in mind that the world starts at (0 0)\n";
 $roverPosition = fgets(STDIN);
 $roverObject = $inputChecker->roverPositionCheck($roverPosition,$worldObject);
 
@@ -34,14 +34,8 @@ var_dump($worldObject->returnValues());
 
 $roverObject->move($worldObject);
 
-//$movementObject = new Rover($directionTravel,);
+print "Movement completed, Rover shuting down..\n";
 
-/*echo "Your world size is\n";
-echo $worldSize;
-echo $roverPosition;
-echo $roverFacing;
-echo $roverSequency;*/
-$outputData = [];
 
 
 

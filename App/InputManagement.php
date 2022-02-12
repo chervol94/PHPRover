@@ -17,7 +17,7 @@ class InputManagement{
             throw new InvalidArgumentException ('Expected input should be two int (X Y)');
         }
         if($inputArray[0]<=5 || $inputArray[1]<=5 ){
-            throw new InvalidArgumentException('Please provide a world size bigger than 4x4');
+            throw new InvalidArgumentException('Please provide a world size bigger than 5x5');
         }
 
         return new World(intval($inputArray[0]),intval($inputArray[1]));
@@ -34,7 +34,7 @@ class InputManagement{
             throw new InvalidArgumentException ('Expected input should be two int (X Y)');
         }
 
-        if($inputArray[0]<0 || $inputArray[1]<0|| intval($worldcoordX)<$inputArray[0] || intval($worldcoordY)<$inputArray[1]){
+        if($inputArray[0]<0 || $inputArray[1]<0|| intval($worldcoordX-1)<$inputArray[0] || intval($worldcoordY-1)<$inputArray[1]){
             throw new InvalidArgumentException('Please place the rover within boundries, from 0 0 to world size defined');
         }
 

@@ -17,7 +17,7 @@ class MovementManagement{
 
     function selectMovement(string $direction, string $movementstep, int $roverpositionX, int $roverpositionY){
         $combination = trim($direction.$movementstep);
-        print "..Moving ".$combination." from current rover position (".$roverpositionX." ".$roverpositionY.")\n";
+        print "..Rover received orders to move ".$movementstep." heading ".$direction." from current position (".$roverpositionX." ".$roverpositionY.")\n";
         foreach ($this->directionCases as $key => $value) {
             $subarray = explode(",",$value);
             //print "Array Search of ". $combination." in ".$key." for ".$value."\n";
@@ -26,24 +26,28 @@ class MovementManagement{
                 $option = $key;
             }
         }
-        print "The direction of movement is ".$option."\n";
-        
-        
-        
-        //search in $directionCases the element of addition, after finding it, return INDEX of that array
+        //print "The direction of movement is ".$option."\n";
 
         switch ($option) {
-            case 'UP':
-                $this->moveAxisUp();
+            case 'UP': //Function that moves (X,Y+1) corresponding to -> EL, NF, WR
+                $roverpositionY++;
+                return [$roverpositionX,$roverpositionY];
+                //$this->moveAxisUp();
             break;
             case 'DOWN':
-                $this->moveAxisDown();
+                $roverpositionY--;
+                return [$roverpositionX,$roverpositionY];
+                //$this->moveAxisDown();
             break;
             case 'RIGHT':
-                $this->moveAxisRight();
+                $roverpositionX++;
+                return [$roverpositionX,$roverpositionY];
+                //$this->moveAxisRight();
             break;
             case 'LEFT':
-                $this->moveAxisLeft();
+                $roverpositionX--;
+                return [$roverpositionX,$roverpositionY];
+                //$this->moveAxisLeft();
             break;
             
             default:
