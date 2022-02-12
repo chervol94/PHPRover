@@ -14,9 +14,13 @@ The grid is defined from 0,0(bottom left) to the max size specified by the user,
 
 The input of the size of the world has been defined with the smallest size of 6x6 with no limit on the maximum size
 
+All the inputs have also been limited, only allowing the values provided in the format suggested.
+
 The ability to place the rover in the world has been controlled to be only achiveable inside the defined coordenates of the world, between minimum 0,0 and maximum introduced by the user.
 
 The movement of the rover has been defined as 2D, moving left means that the rover will "slide" to the left instead of turning in the same spot and needing a "forward" order after that (3D).
+
+The rover will evaluate each step before taking it, and will stop if an obstacle is found in the next movement
 
 The boundries of the world have been defined as "obstacles" and the rover will stop if a boundry is reached.
 
