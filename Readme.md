@@ -1,12 +1,10 @@
 # Mars Rover
 
-## How To Test
+## Run Info
 
 Application Version `PHP 7.4`
 
 `composer install`
-
-`./bin/phpspec run` for tests
 
 `php app.php` for executing application
 
@@ -22,24 +20,6 @@ The movement of the rover has been defined as 2D, moving left means that the rov
 
 The boundries of the world have been defined as "obstacles" and the rover will stop if a boundry is reached.
 
-The obstacles have been generated randomly, using the grid e.g 100x100 and dividing the number by 3 and rounding that down, and they have not been controlled, meaning that an obstacle can be "repeated" in the same position multiple times
+The obstacles have been generated randomly, using the grid e.g 100x100 and dividing the number by 3 and rounding that down, and they have not been controlled, meaning that an obstacle can be "repeated" in the same position multiple times. Also the objects will not be placed in the spot where the rover is located.
 (Quantity of objects can be modified in the generateObstacles function of the class World)
 
-
-#### Test input:
-
-`5 5`
-
-`1 2 N`
-
-`LMLMLMLMM`
-
-`3 3 E`
-
-`MMRMMRMRRM`
-
-#### Test output:
-
-`1 3 N`
-
-`5 1 E`

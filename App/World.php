@@ -27,17 +27,24 @@ class World{
         ];
         
     }
-    //Function used to generate the obstacles in the world, using the size provided by the user, in 1/3 of the map randomly
-    public function generateObstacles(){
+    //Function used to generate the obstacles in the world, using the size provided by the user, in 1/3 of the map randomly 
+    //and avoiding the position of the rover
+    public function generateObstacles(int $roverX,int $roverY){
         $maxsizeX = $this->coordX;
         $maxsizeY = $this->coordY;
         $totalworld = $maxsizeX*$maxsizeY;
         $quantityObstacles = floor($totalworld/3);
         $valueObstacles = [];
         for ($i=0; $i<$quantityObstacles; $i++) { 
-            $numX = random_int(0,$maxsizeX);
-            $numY = random_int(0,$maxsizeY);
-            $valueObstacles[] = "{$numX} {$numY}";
+            $numX = random_int(0,$maxsizeX-1);
+            $numY = random_int(0,$maxsizeY-1);
+            //print "Position ({$numX} {$numY})";
+            if($numX == $roverX && $numY == $roverY){
+                //TODO Improve IF
+                //print "1 1 Reached";
+            }else{
+                $valueObstacles[] = "{$numX} {$numY}";
+            }
         }
         $this->obstacles = $valueObstacles;
         var_dump($this->obstacles);

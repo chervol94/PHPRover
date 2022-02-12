@@ -32,12 +32,15 @@ class Rover{
     }
 
     public function move(World $world){
-        $this->sequenceMovements;
-        $this->roverPosX;
-        $this->roverPosY;
-        $this->direction;
-        $worldcoordX = $world->returnCoordX();
-        $worldcoordY = $world->returnCoordY();
+        $roverX = $this->roverPosX;
+        $roverY = $this->roverPosY;
+        $world->generateObstacles($roverX,$roverY);
+        $world->checkObstacle(6,1);
+        //$this->sequenceMovements;
+
+        //$this->direction;
+        //$worldcoordX = $world->returnCoordX();
+        //$worldcoordY = $world->returnCoordY();
     }
 
 }
