@@ -50,14 +50,12 @@ class InputManagement{
             throw new InvalidArgumentException ('Expected input should be a char (N,S,E,W)');
         }
         $rover->setDirection($input);
-        //return $input;
     }
 
     public static function sequenceCheck(string $input, Rover $rover){
         $sequence = str_split(trim($input),$split_length = 1);
         self::identicalValue($sequence);
         $rover->setMovements($sequence);
-        //return $sequence;
     }
 
     private static function identicalValue(array $sequence){

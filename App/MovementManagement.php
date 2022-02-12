@@ -8,31 +8,42 @@ use InvalidArgumentException;
 class MovementManagement{
 
     private $directionCases = [
-        "UP" => "EF,NR,SL",
-        "DOWN" => "NL,SR,WF",
-        "RIGHT" => "EL,NF,WR",
-        "LEFT" => "ER,Wl,SF"
+        "UP" => "EL,NF,WR",
+        "DOWN" => "ER,WL,SF",
+        "RIGHT" => "EF,NR,SL",
+        "LEFT" => "NL,SR,WF"
     ];
 
 
     function selectMovement(string $direction, string $movementstep, int $roverpositionX, int $roverpositionY){
-        //addition direction+string
+        $combination = trim($direction.$movementstep);
+        print "..Moving ".$combination." from current rover position (".$roverpositionX." ".$roverpositionY.")\n";
+        foreach ($this->directionCases as $key => $value) {
+            $subarray = explode(",",$value);
+            //print "Array Search of ". $combination." in ".$key." for ".$value."\n";
+            //var_dump($subarray);
+            if(array_search($combination,$subarray)!== false){
+                $option = $key;
+            }
+        }
+        print "The direction of movement is ".$option."\n";
+        
+        
+        
+        //search in $directionCases the element of addition, after finding it, return INDEX of that array
 
-
-        switch () {
+        switch ($option) {
             case 'UP':
-                moveAxisUp();
+                $this->moveAxisUp();
             break;
-
             case 'DOWN':
-                moveAxisDown();
+                $this->moveAxisDown();
             break;
-
             case 'RIGHT':
-                moveAxisRight();
+                $this->moveAxisRight();
             break;
             case 'LEFT':
-                moveAxisLeft();
+                $this->moveAxisLeft();
             break;
             
             default:
@@ -42,22 +53,21 @@ class MovementManagement{
 
     }
 
-
-
-
-    //Function that moves (X+1,Y) corresponding to -> EF, NR, SL (EastForward, NorthRight, SouthLeft)
+    //Function that moves (X,Y+1) corresponding to -> EL, NF, WR
     private function moveAxisUp(){
 
     }
-    //Function that moves (X-1,Y) corresponding to -> NL, SR, WF
+
+    //Function that moves (X,Y-1) corresponding to -> ER, WL, SF
     private function moveAxisDown(){
 
     }
-    //Function that moves (X,Y+1) corresponding to -> EL, NF, WR
+
+    //Function that moves (X+1,Y) corresponding to -> EF, NR, SL (EastForward, NorthRight, SouthLeft)
     private function moveAxisRight(){
 
     }
-    //Function that moves (X,Y-1) corresponding to -> ER, WL, SF
+    //Function that moves (X-1,Y) corresponding to -> NL, SR, WF
     private function moveAxisLeft(){
 
     }
