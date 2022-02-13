@@ -10,6 +10,7 @@ class Rover{
     private $roverPosX;
     private $roverPosY;
     private $sequenceMovements;
+    private $finalPosition;
 
     public function __construct( int $posX, int $posY)
     {
@@ -23,6 +24,14 @@ class Rover{
         $this->sequenceMovements = $movements;
     }
 
+    public function getFinalPosition(){
+        return $this->finalPosition;
+    }
+
+    public function showArrayData(){
+        print_r("Final Position of the Rover is (".$this->finalPosition[0]." ".$this->finalPosition[1].")");
+    }
+
     public function returnValues()
     {
         return  [
@@ -34,7 +43,7 @@ class Rover{
     }
 
     //Function that executes the movement based on the sequence given
-    public function move(World $world){
+    public function move(World $world, bool $test){
         $roverX = $this->roverPosX;
         $roverY = $this->roverPosY;
         $sequence = $this->sequenceMovements;
@@ -43,11 +52,13 @@ class Rover{
         $movementObject = new MovementManagement;
         print "Rover has landed in Mars!!\n";
         for ($i=0; $i < count($sequence) ; $i++) { 
-            //print "Moving {".$sequence[$i]."}\n";
             $nextmovement = $movementObject->selectMovement($direction,$sequence[$i],$roverX,$roverY);
             print "..Scanning surface for obstacles in (".$nextmovement[0]." ".$nextmovement[1].")\n";
-            //print "Moving to (".$roverX." ".$roverY.")\n";
-            $obstacleFound = $world->checkObstacle($nextmovement[0],$nextmovement[1]);
+            if($test == false){//Test code
+                $obstacleFound = $world->checkObstacle($nextmovement[0],$nextmovement[1]);
+            }else{
+                $obstacleFound = false;
+            }
             if(!$obstacleFound){
                 $roverX = $nextmovement[0];
                 $roverY = $nextmovement[1];
@@ -57,6 +68,7 @@ class Rover{
                 break;
             }
         }
+        $this->finalPosition = [$roverX,$roverY];
     }
 
 }

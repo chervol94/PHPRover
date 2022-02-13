@@ -20,7 +20,7 @@ class World{
     public function returnCoordY(){
         return $this->coordY;
     }
-    public function showObstacles(){
+    public function showArrayData(){
         print_r($this->obstacles);
     }
 
@@ -42,7 +42,6 @@ class World{
         for ($i=0; $i<$quantityObstacles; $i++) { 
             $numX = random_int(0,$maxsizeX-1);
             $numY = random_int(0,$maxsizeY-1);
-            //print "Position ({$numX} {$numY})";
             if($numX == $roverX && $numY == $roverY){
                 //TODO Improve IF
                 //print "1 1 Reached";
@@ -51,7 +50,6 @@ class World{
             }
         }
         $this->obstacles = $valueObstacles;
-        //var_dump($this->obstacles);
     }
 
     //Function used to check if the position provided has any obstacles present or reaches world boundaries

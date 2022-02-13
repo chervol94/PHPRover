@@ -38,13 +38,18 @@ $inputChecker->sequenceCheck($roverSequence,$roverObject);
 //echo "World Data\n";
 //var_dump($worldObject->returnValues());
 
-$roverObject->move($worldObject);
+$roverObject->move($worldObject,false);
 
 print "Movement completed, Rover shuting down..\n";
 
 print "Do you wish to view the random obstacle placement for this execution? (Y/N) (Recomended use in small worlds)\n";
 $boolQuestion = fgets(STDIN);
 $inputChecker->booleanCheck($boolQuestion,$worldObject);
+
+print "Do you wish to see again the final position of the rover? (Y/N)\n";
+$boolQuestion = fgets(STDIN);
+$inputChecker->booleanCheck($boolQuestion,$roverObject);
+//print_r($roverObject->getFinalPosition());
 
 ?>
 

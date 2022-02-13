@@ -12,19 +12,6 @@ use function PHPUnit\Framework\assertTrue;
 
 class WorldTest extends TestCase{
 
-    
-
-   /* public function test_that_it_isChar_method_returns_bool(){
-
-        //Given that we have an object InputManagement
-        $inputManagement = new InputManagement();
-        //When we call the function 
-        $result = $inputManagement::isChar("a");
-        $inputManagement->
-        //it returns if it is a char
-        $this->assertTrue($result);
-    }*/
-
     public function test_that_an_obstacle_is_detected(){
         //Given that we have an object world with a size
         $a = new World(6,6);
@@ -73,23 +60,7 @@ class WorldTest extends TestCase{
         $property->setAccessible(true);
         assertIsArray($property->getValue($a));
     }
-    /*public function setPrivatePropertyWorld(){
-        $a = new World(6,6);
-        $reflection = new ReflectionClass($a);
-        $property = $reflection->getProperty('obstacles');
-        $property->setAccessible(true);
-        $property->setValue($a, ["1 1","1 2"]);
-        //echo $a->getPrivateProperty();
-    }
-
-    public function getPrivateProperty( $className, $propertyName ) {
-		$this->getPrivateProperty('World','obstacles');
-        $reflector = new ReflectionClass( $className );
-		$property = $reflector->getProperty( $propertyName );
-		$property->setAccessible( true );
-
-		return $property;
-	}*/
+    
 }
 
 ?>

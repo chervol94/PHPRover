@@ -79,12 +79,12 @@ class InputManagement{
      * @param object $world
      * @return void
      */
-    public static function booleanCheck(string $input,World $world){
+    public static function booleanCheck(string $input,object $object){
         $input = trim($input);
         if (strlen($input) !== 1 || !self::isChar($input) || !self::sameCharBool($input)) {
             throw new InvalidArgumentException ('Input provided should be a char (Y/N)');
         }elseif ($input == "Y") {
-            $world->showObstacles();
+            $object->showArrayData();
         }
     }
      /**
