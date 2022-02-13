@@ -6,9 +6,8 @@ use App\World;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
 
+use function PHPUnit\Framework\assertArrayHasKey;
 use function PHPUnit\Framework\assertEquals;
-use function PHPUnit\Framework\assertIsArray;
-use function PHPUnit\Framework\assertTrue;
 
 class WorldTest extends TestCase{
 
@@ -54,11 +53,11 @@ class WorldTest extends TestCase{
         $a = new World(6,6);
         //When we generate obstacles avoiding the position of the rover
         $a->generateObstacles(0,0);
-        //Then we obtain an Array full of positions
+        //Then we obtain an Array and its full of positions
         $reflection = new ReflectionClass($a);
         $property = $reflection->getProperty('obstacles');
         $property->setAccessible(true);
-        assertIsArray($property->getValue($a));
+        assertArrayHasKey(10,$property->getValue($a)); 
     }
     
 }

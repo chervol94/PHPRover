@@ -17,7 +17,7 @@ class MovementManagement{
     ];
 
     //Function that uses the previously defined array to translate cardinal directions into real movements of the XY Axis
-    function selectMovement(string $direction, string $movementstep, int $roverpositionX, int $roverpositionY){
+    public function selectMovement(string $direction, string $movementstep, int $roverpositionX, int $roverpositionY){
         $combination = trim($direction.$movementstep);
         print "..Rover received orders to move ".$movementstep." heading ".$direction." from current position (".$roverpositionX." ".$roverpositionY.")\n";
         foreach ($this->directionCases as $key => $value) {

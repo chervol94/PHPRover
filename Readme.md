@@ -44,7 +44,6 @@ The rover will evaluate the following step before taking it, and will stop if an
 The boundaries of the world have been defined as "obstacles" and the rover will stop if a boundary is reached.
 
 The obstacles have been generated randomly, using the grid e.g 100x100 and dividing the number by 3 and rounding that down, and they have not been controlled, meaning that an obstacle can be "repeated" in the same position multiple times. Also the obstacles will not be placed in the spot where the rover is located.
-(Quantity of objects can be modified in the generateObstacles function of the class World)
 
 ### Tests
 

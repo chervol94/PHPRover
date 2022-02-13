@@ -9,9 +9,7 @@ use PHPUnit\Framework\TestCase;
 use ReflectionClass;
 
 use function PHPUnit\Framework\assertEquals;
-use function PHPUnit\Framework\assertIsArray;
-use function PHPUnit\Framework\assertObjectEquals;
-use function PHPUnit\Framework\assertTrue;
+
 
 class InputTest extends TestCase{
 
@@ -37,11 +35,11 @@ class InputTest extends TestCase{
         //Given that we have an object of input management and an object World
         $a = new InputManagement();
         $w = new World(6,6); 
-        //When we input the starting position of the rover
+        //When we input the starting position of the rover the position is checked
         $value = $a->roverPositionCheck("2 2",$w);
         $r = new Rover(2,2);
+        //Then it returns a Rover object with the position expected
         assertEquals($r,$value);
-        //Then it returns a Rover object with the position
     }
 }
 

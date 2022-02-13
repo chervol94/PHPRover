@@ -7,8 +7,6 @@ use PHPUnit\Framework\TestCase;
 use ReflectionClass;
 
 use function PHPUnit\Framework\assertEquals;
-use function PHPUnit\Framework\assertIsArray;
-use function PHPUnit\Framework\assertTrue;
 
 class MovementTest extends TestCase{
 
