@@ -2,6 +2,7 @@
 
 namespace App;
 
+//Class that stores all the values of the world and also the obstacle generation and obstacle check
 class World{
 
     private $coordX;
@@ -30,7 +31,7 @@ class World{
         ];
         
     }
-    //Function used to generate the obstacles in the world, using the size provided by the user, in 1/3 of the map randomly 
+    //Function used to generate the obstacles in the world, using the size provided by the user, in 1/3 of the map, randomly 
     //and avoiding the position of the rover
     public function generateObstacles(int $roverX,int $roverY){
         $maxsizeX = $this->coordX;
@@ -52,7 +53,8 @@ class World{
         $this->obstacles = $valueObstacles;
         //var_dump($this->obstacles);
     }
-    //Function used to check if the position provided has any obstacle present/reaches boundaries
+
+    //Function used to check if the position provided has any obstacles present or reaches world boundaries
     public function checkObstacle(int $posX, int $posY){
         $maxsizeX = $this->coordX;
         $maxsizeY = $this->coordY;
@@ -64,7 +66,8 @@ class World{
                 return true;
             }
         }
-        //Given that the position of the grid in a 6x6 is from 0 to 5, if any movement reaches or surpases the max, 6, or the minimum, 0, the rover will be out of bounds.
+        //Given that the position of the grid in a 6x6 is from 0 to 5, if any movement reaches or surpases the max, 6,
+        // or the minimum, 0, the rover will be out of bounds.
         if($posX >= $maxsizeX || $posY >= $maxsizeY || $posX<0 || $posY<0 ){
             echo "[World boundary reached] ";
             return true;

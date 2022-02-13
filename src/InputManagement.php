@@ -41,6 +41,11 @@ class InputManagement{
         return new Rover(intval($inputArray[0]),intval($inputArray[1]));
     }
 
+    /**
+     * Function used filter the values of the rover direction
+     * @param string $input
+     * @return void
+     */
     public static function directionCheck(string $inputRaw,Rover $rover){
         $input = trim($inputRaw);
         /*echo strlen(trim($input));
@@ -52,23 +57,35 @@ class InputManagement{
         $rover->setDirection($input);
     }
 
+    /**
+     * Function used filter the values of the movement sequence
+     * @param string $input
+     * @param object $rover
+     * @return void
+     */
     public static function sequenceCheck(string $input, Rover $rover){
         $sequence = str_split(trim($input),$split_length = 1);
         self::identicalValue($sequence);
         $rover->setMovements($sequence);
     }
 
-    private static function identicalValue(array $sequence){
-        $moveArray = ["F","L","R"];
-        $containsAllValues = !array_diff($sequence, $moveArray);
-        //var_dump($containsAllValues);
-        if(!$containsAllValues){
-            throw new InvalidArgumentException("A unvalid command was given, please use F/L/R");
-        }  
+    /**
+     * Function used filter the input of the (Y/N) question made at the end of the execution
+     * @param string $input
+     * @param object $world
+     * @return void
+     */
+    public static function booleanCheck(string $input,World $world){
+        $input = trim($input);
+        if (strlen($input) !== 1 || !self::isChar($input) || !self::sameCharBool($input)) {
+            throw new InvalidArgumentException ('Expected input should be a char (Y/N)');
+        }elseif ($input == "Y") {
+            $world->showObstacles();
+        }
     }
      /**
      * Function used to manage if the input given is a numeral
-     * @param string $input
+     * @param array $input
      * @return bool
      */
     private static function isDigit(array $inputArray)
@@ -76,8 +93,8 @@ class InputManagement{
         return (ctype_digit($inputArray[0]) && ctype_digit($inputArray[1]));
     }
 
-    //Function used to assure that the input is a character
     /**
+     * Function used to assure that the input is a character
      * @param string $input
      * @return bool
      */
@@ -86,12 +103,36 @@ class InputManagement{
         return (ctype_alpha($input));
     }
 
-    //Function used to assure that the characters used are the ones supported
     /**
+     * Function used to assure that the characters used are the ones supported (Y/N)
      * @param string $input
-     * @return bool
+     * @return array
      */
-    private static function sameChar($input){
+    private static function sameCharBool(string $input){
+        $charArray = ["N","Y"];
+        return in_array($input,$charArray);
+    }
+
+    /**
+     * Function used filter the input values on the movements (F/L/R)
+     * @param string $input
+     * @return void
+     */
+    private static function identicalValue(array $sequence){
+        $moveArray = ["F","L","R"];
+        $containsAllValues = !array_diff($sequence, $moveArray);
+        //var_dump($containsAllValues);
+        if(!$containsAllValues){
+            throw new InvalidArgumentException("A unvalid command was given, please use F/L/R");
+        }  
+    }
+
+    /**
+     * Function used to assure that the characters used are the ones supported (N/S/E/W)
+     * @param string $input
+     * @return array
+     */
+    private static function sameChar(string $input){
         $charArray = ["N","S","E","W"];
         return in_array($input,$charArray);
     }

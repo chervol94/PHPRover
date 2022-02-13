@@ -2,15 +2,12 @@
 
 require 'vendor/autoload.php';
 
-
 /*
-require_once("App/Rover.php");
-require_once("App/InputManagement.php");
-require_once("App/World.php");
-require_once("App/MovementManagement.php");
+require_once("src/Rover.php");
+require_once("src/InputManagement.php");
+require_once("src/World.php");
+require_once("src/MovementManagement.php");
 */
-
-
 
 use App\InputManagement;
 use App\Rover;
@@ -46,10 +43,10 @@ $roverObject->move($worldObject);
 print "Movement completed, Rover shuting down..\n";
 
 print "Do you wish to view the random obstacle placement for this execution? (Y/N) (Recomended use in small worlds)\n";
-$worldObject->showObstacles();
-//$inputChecker->return
+$boolQuestion = fgets(STDIN);
+$inputChecker->booleanCheck($boolQuestion,$worldObject);
 
-
+?>
 
 
 

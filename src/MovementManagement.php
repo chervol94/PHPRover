@@ -5,8 +5,10 @@ namespace App;
 use InvalidArgumentException;
 
 //TODO extend Class Rover
+//Class used to manage the movements in the XY Axis
 class MovementManagement{
 
+    //Array that groups all the cardinal directions with the equivalent movement in the XY Axis
     private $directionCases = [
         "UP" => "EL,NF,WR",
         "DOWN" => "ER,WL,SF",
@@ -14,42 +16,34 @@ class MovementManagement{
         "LEFT" => "NL,SR,WF"
     ];
 
-
+    //Function that uses the previously defined array to translate cardinal directions into real movements of the XY Axis
     function selectMovement(string $direction, string $movementstep, int $roverpositionX, int $roverpositionY){
         $combination = trim($direction.$movementstep);
         print "..Rover received orders to move ".$movementstep." heading ".$direction." from current position (".$roverpositionX." ".$roverpositionY.")\n";
         foreach ($this->directionCases as $key => $value) {
             $subarray = explode(",",$value);
-            //print "Array Search of ". $combination." in ".$key." for ".$value."\n";
-            //var_dump($subarray);
             if(array_search($combination,$subarray)!== false){
                 $option = $key;
             }
         }
-        //print "The direction of movement is ".$option."\n";
 
         switch ($option) {
-            case 'UP': //Function that moves (X,Y+1) corresponding to -> EL, NF, WR
+            case 'UP': //Option that moves (X,Y+1) corresponding to -> EL, NF, WR (EastLeft, NorthFront, WestRight)
                 $roverpositionY++;
                 return [$roverpositionX,$roverpositionY];
-                //$this->moveAxisUp();
             break;
-            case 'DOWN':
+            case 'DOWN'://Option that moves (X,Y-1) corresponding to -> ER, WL, SF (EastForward, WestLeft, SouthForward)
                 $roverpositionY--;
                 return [$roverpositionX,$roverpositionY];
-                //$this->moveAxisDown();
             break;
-            case 'RIGHT':
+            case 'RIGHT': //Option that moves (X+1,Y) corresponding to -> EF, NR, SL (EastForward, NorthRight, SouthLeft)
                 $roverpositionX++;
                 return [$roverpositionX,$roverpositionY];
-                //$this->moveAxisRight();
             break;
-            case 'LEFT':
+            case 'LEFT'://Option that moves (X-1,Y) corresponding to -> NL, SR, WF (NorthLeft, SouthRight, WestForward)
                 $roverpositionX--;
                 return [$roverpositionX,$roverpositionY];
-                //$this->moveAxisLeft();
             break;
-            
             default:
                 throw new InvalidArgumentException("Something Went Wrong");
             break;
@@ -57,30 +51,6 @@ class MovementManagement{
 
     }
 
-    //Function that moves (X,Y+1) corresponding to -> EL, NF, WR
-    private function moveAxisUp(){
-
-    }
-
-    //Function that moves (X,Y-1) corresponding to -> ER, WL, SF
-    private function moveAxisDown(){
-
-    }
-
-    //Function that moves (X+1,Y) corresponding to -> EF, NR, SL (EastForward, NorthRight, SouthLeft)
-    private function moveAxisRight(){
-
-    }
-    //Function that moves (X-1,Y) corresponding to -> NL, SR, WF
-    private function moveAxisLeft(){
-
-    }
 }
-
-
-
-
-
-
 
 ?>
