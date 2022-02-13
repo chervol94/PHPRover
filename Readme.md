@@ -12,6 +12,8 @@ I had some issues with the autoload, if it doesn't work correctly please uncomme
 
 `php app.php` in the terminal to execute the application.
 
+`bin/phpunit` to run the unit tests
+
 #### Implementation
 
 The grid is defined from 0,0(bottom left) to the max size specified by the user (upper right corner), giving only positive coordenates to the world. (The world will have a position less than the quantity of the grids due to starting in 0 0)
