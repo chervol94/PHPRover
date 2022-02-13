@@ -16,7 +16,7 @@ I had some issues with the autoload, if it doesn't work correctly please uncomme
 
 #### Implementation
 
-The grid is defined from 0,0(bottom left) to the max size specified by the user (upper right corner), giving only positive coordenates to the world. (The world will have a position less than the quantity of the grids due to starting in 0 0)
+The grid is defined from 0,0(bottom left) to the max size specified by the user (upper right corner), giving only positive coordenates to the world.
 
     Y|        5 5
      |
@@ -24,11 +24,18 @@ The grid is defined from 0,0(bottom left) to the max size specified by the user 
      |________
     0 0       X
 
-The input of the size of the world has been defined with the smallest size usable of 6x6 with no limit on the maximum size.
+The input of the size of the world has been defined with the smallest size usable of 6x6 with no limit on the maximum size and shape, it can be 100x6 for example.
 
-All the inputs have also been limited, only allowing the values provided in the format suggested, e.g only allowing positive numbers, the quantity needed (1 1 and not 1 1 1), the value (Y or N / N S E W / F L R) and all are also case sensitive, only uppercase allowed. If any of this criteria is not meet the app will throw and Invalid Argument Exception.
 
-The ability to place the rover in the world has been controlled to be only possible inside the defined coordenates of the world, between minimum 0,0 and maximum introduced by the user. (5 5 if the user inputs 6 6 on world size)
+The inputs have been limited this way:
+- World Size: Only allows numbers (positive ones), with the correct format (X Y), and the minimum accepted is 6 6.
+- Rover Position: Only allows numbers (positive ones), with the correct format (X Y), the minimum accepted is 0 0 and the maximum is the size of the world minus one (since the grid starts at 0 0).
+- Direction: Only allows the direction shown in uppercase (N/S/E/W), one letter, no numbers or symbols.
+- Commands: This input is limited to only 15 movements, only the letters shown in uppercase (FLR), all together and without symbols or spaces.
+- Final question: Only allows the letters shown (Y/N), in uppercase, no symbols or numbers.
+If any of this criteria is not meet the app will throw and Invalid Argument Exception.
+
+The ability to place the rover in the world has been controlled to be only possible inside the defined coordenates of the world, between minimum 0 0 and maximum introduced by the user. (5 5 if the user inputs 6 6 on world size)
 
 The movement of the rover has been defined as 2D, moving left means that the rover will "slide" to the left instead of turning in the same spot and needing a "forward" order after that (3D). Also the movement is based in the direction the rover "faces". e.g North Forward will increase in the Y axis while East Forward will increase in the X Axis.
 
@@ -39,3 +46,22 @@ The boundaries of the world have been defined as "obstacles" and the rover will 
 The obstacles have been generated randomly, using the grid e.g 100x100 and dividing the number by 3 and rounding that down, and they have not been controlled, meaning that an obstacle can be "repeated" in the same position multiple times. Also the obstacles will not be placed in the spot where the rover is located.
 (Quantity of objects can be modified in the generateObstacles function of the class World)
 
+#### Tests
+
+Tests are run but not much feedback is received in the terminal. The executed test could be summarized as:
+- World Size Input Check Test
+- Rover Position Input Check Test
+- Obstacle Detection (Detected - Random Placed Obstacle)
+- Obstacle Detection (Not Detected)
+- Obstacle Detection (Detected - Boundary Reached)
+- Obstacle Generation Test
+- Movement Test (XY Axis Up)
+- Movement Test (XY Axis Down)
+- Movement Test (XY Axis Left)
+- Movement Test (XY Axis Right)
+
+
+
+#### Example of Execution
+
+![copy `app`](phpApp_screenshot.png "copy `app`")

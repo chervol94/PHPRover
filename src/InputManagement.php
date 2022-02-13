@@ -31,11 +31,11 @@ class InputManagement{
         $worldcoordY = $world->returnCoordY();
 
         if (count($inputArray) !== 2 || !self::IsDigit($inputArray)) {
-            throw new InvalidArgumentException ('Expected input should be two int (X Y)');
+            throw new InvalidArgumentException ('Input provided should be two int (X Y)');
         }
 
         if($inputArray[0]<0 || $inputArray[1]<0|| intval($worldcoordX-1)<$inputArray[0] || intval($worldcoordY-1)<$inputArray[1]){
-            throw new InvalidArgumentException('Please place the rover within boundries, from 0 0 to world size defined');
+            throw new InvalidArgumentException('Please place the rover within boundries, e.g(World of 6x6 From 0 0 to 5 5)');
         }
 
         return new Rover(intval($inputArray[0]),intval($inputArray[1]));
@@ -52,7 +52,7 @@ class InputManagement{
         echo self::isChar($input);
         echo self::sameChar($input);*/
         if (strlen($input) !== 1 || !self::isChar($input) || !self::sameChar($input)) {
-            throw new InvalidArgumentException ('Expected input should be a char (N,S,E,W)');
+            throw new InvalidArgumentException ('Input provided should be a char (N/S/E/W)');
         }
         $rover->setDirection($input);
     }
@@ -66,7 +66,11 @@ class InputManagement{
     public static function sequenceCheck(string $input, Rover $rover){
         $sequence = str_split(trim($input),$split_length = 1);
         self::identicalValue($sequence);
-        $rover->setMovements($sequence);
+        if(count($sequence)>15){
+            throw new InvalidArgumentException("Input provided should not exceed 15 commands");
+        }else{
+            $rover->setMovements($sequence);
+        }
     }
 
     /**
@@ -78,7 +82,7 @@ class InputManagement{
     public static function booleanCheck(string $input,World $world){
         $input = trim($input);
         if (strlen($input) !== 1 || !self::isChar($input) || !self::sameCharBool($input)) {
-            throw new InvalidArgumentException ('Expected input should be a char (Y/N)');
+            throw new InvalidArgumentException ('Input provided should be a char (Y/N)');
         }elseif ($input == "Y") {
             $world->showObstacles();
         }
