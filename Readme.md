@@ -33,7 +33,8 @@ The inputs have been limited this way:
 - Direction: Only allows the direction shown in uppercase (N/S/E/W), one letter, no numbers or symbols.
 - Commands: This input is limited to only 15 movements, only the letters shown in uppercase (FLR), all together and without symbols or spaces.
 - Final questions: Only allows the letters shown (Y/N), in uppercase, no symbols or numbers.
-If any of this criteria is not meet the app will throw and Invalid Argument Exception.
+
+If any of this input criteria is not meet the app will throw and Invalid Argument Exception.
 
 The ability to place the rover in the world has been controlled to be only possible inside the defined coordenates of the world, between minimum 0 0 and maximum introduced by the user. (5 5 if the user inputs 6 6 on world size)
 
